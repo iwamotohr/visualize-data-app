@@ -7,14 +7,12 @@ interface FileUploaderProps {
 }
 
 const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
-  const [fileName, setFileName] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFileName(file.name);
       onFileSelect(file);
     }
   };
@@ -38,7 +36,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
 
     const file = e.dataTransfer.files?.[0];
     if (file) {
-      setFileName(file.name);
       onFileSelect(file);
     }
   };
@@ -49,11 +46,11 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-lg ${
+      className={`flex flex-col items-center justify-center w-full p-6 text-white border-2 border-dashed rounded-lg backdrop-blur-[4px] transition-colors ${
         isDragging
-          ? "border-blue-500 text-blue-500"
-          : "border-gray-400 text-gray-400"
-      } transition-colors`}
+          ? "border-cyan-400 shadow-[0_0_10px_theme(colors.cyan.300)]"
+          : "border-white/50"
+      }`}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragEnter}
       onDragLeave={handleDragLeave}
@@ -67,28 +64,29 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
         className="hidden"
       />
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-12 w-12"
-        fill="none"
+        className="h-8 w-8 text-cyan-300 [filter:drop-shadow(0_0_4px_theme(colors.cyan.100))]"
         viewBox="0 0 24 24"
-        stroke="currentColor"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
+          d="M12 4L12 20M12 4L18 10M12 4L6 10"
+          stroke="currentColor"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={2}
-          d="M7 16a4 4 0 01-4-4v-4a4 4 0 014-4h4l4 4h4a4 4 0 014 4v4a4 4 0 01-4 4H7z"
         />
       </svg>
-      <p className="mt-2 text-lg font-semibold">
-        {fileName ? `${fileName} を選択中` : "音楽ファイルをドラッグ＆ドロップ"}
+      <p className="mt-2 font-semibold text-center">
+        DRAG &amp; DROP
+        <br />
+        YOUR MUSIC HERE
       </p>
-      <p className="text-sm mt-1">または</p>
       <button
         onClick={handleButtonClick}
-        className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors cursor-pointer"
+        className="mt-4 px-4 py-2 text-sm text-white rounded-[100px] transition-all cursor-pointer border border-cyan-300 shadow-[0_0_6px_theme(colors.cyan.300)] hover:shadow-[0_0_10px_theme(colors.cyan.300)]"
       >
-        ファイルを選択
+        OR BROWSE FILES
       </button>
     </div>
   );
