@@ -54,6 +54,7 @@ const ClientPage: React.FC<ClientPageProps> = ({ presets }) => {
     if (audioRef.current && !analyserNode) {
       try {
         const context = new (window.AudioContext ||
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (window as any).webkitAudioContext)();
         const source = context.createMediaElementSource(audioRef.current);
         const newAnalyser = context.createAnalyser();
