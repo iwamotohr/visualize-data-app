@@ -46,7 +46,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center w-full p-6 text-white border-2 border-dashed rounded-lg backdrop-blur-[4px] transition-colors ${
+      className={`flex flex-col items-center justify-center w-full p-6 text-white border-2 border-dashed rounded-lg bg-black/20 backdrop-blur-[4px] transition-colors ${
         isDragging
           ? "border-cyan-400 shadow-[0_0_10px_theme(colors.cyan.300)]"
           : "border-white/50"

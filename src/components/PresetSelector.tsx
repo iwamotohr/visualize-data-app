@@ -1,13 +1,7 @@
 "use client";
 
 import React from "react";
-
-interface Preset {
-  id: string;
-  title: string;
-  modelUrl: string;
-  scaleFactor?: number;
-}
+import { Preset } from "@/lib/microcms";
 
 interface PresetSelectorProps {
   presets: Preset[];

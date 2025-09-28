@@ -86,7 +86,6 @@ const Model: React.FC<
     }
   });
 
-  // todo: modelUrlがnullまたは不正な場合のエラーハンドリング
   return (
     scene && (
       <primitive ref={modelRef} object={scene} scale={scaleFactor || 0.9} />

@@ -5,14 +5,7 @@ import FileUploader from "@/components/FileUploader";
 import AudioPlayer from "@/components/AudioPlayer";
 import Visualizer from "@/components/Visualizer";
 import PresetSelector from "@/components/PresetSelector";
-
-// todo: getVisualizerPresetsの型定義
-interface Preset {
-  id: string;
-  title: string;
-  modelUrl: string;
-  scaleFactor?: number;
-}
+import { Preset } from "@/lib/microcms";
 
 interface ClientPageProps {
   presets: Preset[];
